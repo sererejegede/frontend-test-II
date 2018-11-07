@@ -8,7 +8,7 @@ import {GiphyService} from './services/giphy.service';
 })
 export class AppComponent {
   public message: string;
-  public gif_url = '';
+  private seperator = '~';
   public messages: any[] = [
     {
       text: 'Hello',
@@ -24,12 +24,12 @@ export class AppComponent {
 
   public isGifNeeded() {
     if (this.message) {
-      if (this.message.includes('~')) {
-        const search_string = this.message.split('~')[1];
+      if (this.message.includes(`${this.seperator}`)) {
+        const search_string = this.message.split(`${this.seperator}`)[1];
         this.getGIF(search_string);
       } else {
         this.messages.push({
-          text: this.message,
+          text: this.message.split(`${this.seperator}`).join(''),
           img: ''
         });
         this.reset();
@@ -38,12 +38,10 @@ export class AppComponent {
   }
 
   private getGIF(search_string) {
-    // return console.log(this.message.split(search_string));
     this.giphyService.getGIF(search_string).subscribe(
       (res) => {
-        // this.gif_url = res['data'].images.original.url;
         this.messages.push({
-          text: this.message.split(`${search_string}`)[1],
+          text: this.message.split(`${this.seperator}`).join(''),
           img: res['data'].images.original.url
         });
         this.reset();
