@@ -6,3 +6,8 @@
 export const environment = {
   production: false
 };
+
+export const env_variables = {
+  api_key: 'AFRLz8aRhBMqN3GRfw5HSt90pMSdHj7Q',
+  api_url: 'https://api.giphy.com/v1/gifs/translate'
+};
