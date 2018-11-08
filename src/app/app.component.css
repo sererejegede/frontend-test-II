@@ -202,3 +202,7 @@ body {
   bottom: 0;
   background-color: #a3d063;
 }
+
+.text-center {
+  text-align: center !important;
+}
